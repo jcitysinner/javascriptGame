@@ -1,33 +1,34 @@
-var Game = function(){
+var Game = function () { 
 
 	//This is the player's basic prototype
-	var Hero = function(){
+	var Hero = function () {
 
 		//Hero stats.
-		this.maxHP = 100;
-		this.currentHP = 100;
+		this.maxHP       = 100;
+		this.currentHP   = 100;
 
-		this.maxMp = 100;
-		this.currentMP = 100;
+		this.maxMp       = 100;
+		this.currentMP   = 100;
 
-		this.maxOD = 100;
-		this.currentOD = 0;
-		this.ODActive = false;
-		this.ODCount = 0;
+		this.maxOD       = 100;
+		this.currentOD   = 0;
+		this.ODActive    = false;
+		this.ODCount     = 0;
 
-		this.power = 10;
+		this.power       = 10;
 
-		this.totalBlock = 0;
-		this.block = 0;
+		this.totalBlock  = 0;
+		this.block       = 0;
 
-		this.skills = ['Heal', 'Holyblast', 'Aegis'];
+		this.skills      = ['Heal', 'Holyblast', 'Aegis'];
 
 		//Other variables
 		var i;
 		var skillElement;
 
 		//Calculator functions to update the UI when the data changes.
-		this.calcHP = function(){
+		this.calcHP = function () {
+
 			if (this.currentHP > 0){
 				document.getElementById('hpElement').innerHTML = this.currentHP;
 				return true;
@@ -40,12 +41,15 @@ var Game = function(){
 
 		}
 
-		this.calcMP = function(){
+		this.calcMP = function () {
+
 			document.getElementById('mpElement').innerHTML = this.currentMP;
 			console.log(this.currentMP);
+
 		}
 
-		this.calcOD = function(){
+		this.calcOD = function () {
+
 			if (this.currentOD >= 100){
 				document.getElementById('odElement').style.width = '100%';
 				document.getElementById('odElement').innerHTML = 'KICK INTO OVERDRIVE';
@@ -57,6 +61,7 @@ var Game = function(){
 				document.getElementById('odElement').style.cursor = 'auto';
 				document.getElementById('odElement').innerHTML = '';
 			}
+
 		}
 
 		//Initial UI update to make sure the data and UI match.
@@ -66,26 +71,29 @@ var Game = function(){
 
 		//Creates a skill button for each of the character's skills.
 		for (i = 0; i < this.skills.length; i++){
+
 			skillElement = document.createElement('li');
 			skillElement.id = 'skill' + (i + 1);
 			skillElement.innerHTML = this.skills[i];
 			document.getElementById('skillsList').appendChild(skillElement);
 			skillElement.addEventListener('click', 'skill' + (i + 1));
+
 		}
 
 	}
 
 	//This is the enemy's basic prototype
-	var Enemy = function(){
+	var Enemy = function () {
 		
 		//Enemy Stats.
-		this.maxHP = '100';
-		this.currentHP = '100';
+		this.maxHP      = '100';
+		this.currentHP  = '100';
 
-		this.power = 12;
+		this.power      = 12;
 
 		//Calculator function to update the UI when the data changes.
-		this.calcHP = function(){
+		this.calcHP = function () {
+
 			if (this.currentHP > 0){
 				document.getElementById('enemyHP').style.width = ((this.currentHP / this.maxHP) * 100) + '%';
 				return true;
@@ -95,6 +103,7 @@ var Game = function(){
 				document.getElementById('win').style.display = 'block';
 				return false;
 			}
+
 		}
 
 		//Initial UI update to make sure the data and UI match.
@@ -103,13 +112,13 @@ var Game = function(){
 	}
 
 	//Initiates the Hero and Enemy objects.
-	var player = new Hero();
-	var monster = new Enemy();
+	var player      = new Hero();
+	var monster     = new Enemy();
 
-	var playerTurn = true;
+	var playerTurn  = true;
 
 	//Runs when user clicks the attack button. Calculates the damage and then subtracts that from the enemy's health.
-	function heroAttack(){
+	function heroAttack () {
 
 		var isDead;
 		
@@ -125,14 +134,16 @@ var Game = function(){
 		document.getElementById('monsterSprite').classList.add('pushBack');
 
 		//Changes the enemies current HP and then updates it with the calcHP method.
-		monster.currentHP -= totalDmg;
-		isDead = monster.calcHP();
+		monster.currentHP  -= totalDmg;
+		isDead              = monster.calcHP();
 
 		//Hides the damage alert
-		setTimeout(function(){
+		setTimeout(function () {
+
 			document.getElementById('monsterAlert').style.opacity = 0;
 			document.getElementById('monsterAlert').innerHTML = '';
 			document.getElementById('monsterSprite').classList.remove('pushBack');
+
 		}, 1000);
 
 		//If the player isn't dead, continue the game.
@@ -145,24 +156,25 @@ var Game = function(){
 	}
 	
 	//The hero's block skill
-	function heroBlock(){
+	function heroBlock () {
 
 		//for one turn the hero blocks half of all incoming damage.
-		player.block = 0.5;
+		player.block  = 0.5;
 
-		playerTurn = false;
+		playerTurn    = false;
 		turnChange();
+
 	}
 
 	//Activates the hero's Overdrive making him stronger for 3 turns
-	function heroOverdriveOn(){
+	function heroOverdriveOn () {
 
-		if (player.currentOD >= 100){
-			player.ODActive = true;
-			player.power += 10;
-			player.block = 0.7;
-			player.ODCount = 3;
-			player.currentOD = 0;
+		if (player.currentOD  >= 100){
+			player.ODActive    = true;
+			player.power      += 10;
+			player.block       = 0.7;
+			player.ODCount     = 3;
+			player.currentOD   = 0;
 			player.calcOD();
 			document.getElementById('overDriveLabel').style.opacity = 1;
 		}
@@ -170,17 +182,17 @@ var Game = function(){
 	}
 
 	//Disables the hero's overdrive after 3 turns have gone by.
-	function heroOverdriveOff(){
+	function heroOverdriveOff () {
 
-		player.ODActive = false;
-		player.power = 10;
-		player.block = 0;
+		player.ODActive  = false;
+		player.power     = 10;
+		player.block     = 0;
 		document.getElementById('overDriveLabel').style.opacity = 0;
 		
 	}
 
 	//Closes the skills menu
-	function closeSkills(){
+	function closeSkills () {
 
 		document.getElementById('skillsMenu').style.opacity = 0;
 		document.getElementById('skillsMenu').style.display = 'none';
@@ -188,7 +200,7 @@ var Game = function(){
 	}
 
 	//Opens the skills menu
-	function openSkills(){
+	function openSkills () {
 
 		document.getElementById('skillsMenu').style.display = 'block';
 		document.getElementById('skillsMenu').style.opacity = 1;
@@ -196,7 +208,7 @@ var Game = function(){
 	}
 
 	//Runs the player's first skill
-	function skill1(){
+	function skill1 () {
 
 		//Checks to make sure the player has enough mana to preform the skill
 		if (player.currentMP >= 60){
@@ -232,10 +244,9 @@ var Game = function(){
 			}, 1000);
 		}
 
-		
 	}
 
-	function skill2(){
+	function skill2 () {
 
 		//Checks to make sure the player has enough mana to preform the skill
 		if (player.currentMP >= 50){
@@ -284,9 +295,10 @@ var Game = function(){
 				document.getElementById('manaAlert').style.opacity = 0;
 			}, 1000);
 		}
+
 	}
 
-	function skill3(){
+	function skill3 () {
 
 		//Checks to see if the hero has enough mana to preform the skill
 		if (player.currentMP >= 50){
@@ -316,7 +328,7 @@ var Game = function(){
 		
 	}
 
-	function enemyTurn(){
+	function enemyTurn () {
 
 		var isDead;
 		
@@ -367,7 +379,7 @@ var Game = function(){
 
 	}
 
-	function turnChange(){
+	function turnChange () {
 
 		if (playerTurn == false){
 
