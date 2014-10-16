@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="stylesheet" href="global.css">
+	<meta name="viewport" content="width=device-width, minimumscale=1.0, maximum-scale=1.0" />
+	<title>Inheritance Assignment</title>
+	<script src="game.js"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<div id="win"><h1>YOU WIN!</h1></div>
+		<div id="lose"><h1>YOU LOSE!</h1></div>
+		<p id="overDriveLabel">OVERDRIVE ACTIVE</p>
+		<img src="images/background1.png">
+		<p id="playerAlert">TEST</p>
+		<p id="monsterAlert">TEST</p>
+		<img id="healSprite" src="images/heal.svg">
+		<img id="shieldSprite" src="images/shield.svg">
+		<img id="blastSprite" src="images/holyblast.svg">
+		<img id="playerSprite" src="images/player.png">
+		<img id="monsterSprite" src="images/monster.png">
+		<div class="menu">
+			<div class="userMenu">
+				<p id="manaAlert">Not Enough Mana</p>
+				<div id="skillsMenu">
+					<ul id="skillsList">
+					</ul>
+					<p id="close">CLOSE</p>
+				</div>
+				<p class="hp">HP: <span id="hpElement">100</span>/100</p>
+				<p class="mp">MP: <span id="mpElement"></span>/100</p>
+				<p class="overdriveLabel">Overdrive:</p>
+				<div class="overdriveContainer">
+					<div id="odElement">
+					</div>
+				</div>
+				<div class="commands" id="commands">
+					<a class="command" id="attackButton" >Attack</a>
+					<a class="command" id="skillsButton" >Skill</a>
+					<a class="command" id="blockButton" >Block</a>
+				</div>
+			</div>
+			<div class="enemyMenu">
+				<p class="enemyHP">Enemy HP:</p>
+				<div class="enemyHPContainer">
+					<div id="enemyHP">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

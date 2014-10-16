@@ -1,0 +1,405 @@
+* {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+}
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+}
+div.wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 1000px;
+  margin: 15px auto;
+  background-color: #333333;
+  border-radius: 15px;
+}
+div.wrapper img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+div.wrapper div.userMenu {
+  padding: 10px;
+  width: 49%;
+  display: inline-block;
+}
+div.wrapper div.userMenu p.hp,
+div.wrapper div.userMenu p.mp {
+  display: inline-block;
+  font-size: 22px;
+  margin: 0 0 15px 0px;
+  line-height: 22px;
+}
+div.wrapper div.userMenu p.hp {
+  color: #e74c3c;
+}
+div.wrapper div.userMenu p.mp {
+  color: #3498db;
+  margin-left: 30px;
+}
+div.wrapper div.userMenu p#manaAlert {
+  display: block;
+  width: 47%;
+  padding: 5px;
+  margin: 0;
+  border-radius: 10px;
+  position: absolute;
+  background-color: white;
+  border: solid 3px #333;
+  text-align: center;
+  opacity: 0;
+}
+div.wrapper div.userMenu p.overdriveLabel {
+  margin: 0 0 15px 0;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: white;
+}
+div.wrapper div.userMenu div.overdriveContainer {
+  width: 100%;
+  height: 25px;
+  border: 3px solid white;
+  margin-bottom: 15px;
+}
+div.wrapper div.userMenu div.overdriveContainer div#odElement {
+  width: 0%;
+  height: 100%;
+  background-color: #f1c40f;
+  transition: all 0.5s;
+  color: white;
+  text-align: center;
+  font-weight: 300;
+  -webkit-animation: overdriveAnim 3s infinite linear;
+  /* Chrome, Safari, Opera */
+
+  animation: overdriveAnim 3s infinite linear;
+}
+div.wrapper div.userMenu div.commands {
+  text-align: center;
+  transition: all 0.5s;
+}
+div.wrapper div.userMenu div.commands a.command {
+  display: inline-block;
+  width: 32%;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #2980b9;
+  color: white;
+  font-size: 18px;
+  line-height: 25px;
+  text-decoration: none;
+  border: 5px solid #3498db;
+  border-radius: 15px;
+  padding: 8px 0;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  position: relative;
+  left: 0;
+  cursor: pointer;
+}
+div.wrapper div.userMenu div.commands a:hover {
+  background-color: #3498db;
+}
+div.wrapper div.userMenu div.commands a:nth-child(2) {
+  margin: 0 1%;
+}
+div.wrapper div.userMenu div#skillsMenu {
+  position: absolute;
+  width: 49%;
+  height: 24.5%;
+  background-color: #2980B9;
+  z-index: 100;
+  border-radius: 10px;
+  border: 3px solid #3498db;
+  display: none;
+  opacity: 0;
+  transition: all 0.5s;
+}
+div.wrapper div.userMenu div#skillsMenu p#close {
+  display: block;
+  width: 100%;
+  text-align: center;
+  position: inherit;
+  bottom: 0;
+  color: white;
+  cursor: pointer;
+  margin: 0;
+  padding: 5px 0;
+  transition: all 0.3s;
+}
+div.wrapper div.userMenu div#skillsMenu p#close:hover {
+  background-color: #3498db;
+}
+div.wrapper div.userMenu div#skillsMenu ul {
+  padding: 0;
+  margin: 0;
+}
+div.wrapper div.userMenu div#skillsMenu ul li {
+  list-style: none;
+  width: 100%;
+  padding: 13px 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+div.wrapper div.userMenu div#skillsMenu ul li:hover {
+  background-color: #3498db;
+}
+div.wrapper div.enemyMenu {
+  padding: 10px;
+  width: 50%;
+  float: right;
+}
+div.wrapper div.enemyMenu p.enemyHP {
+  display: inline-block;
+  font-size: 22px;
+  margin: 0 0 15px 0px;
+  line-height: 22px;
+  color: #c0392b;
+  text-transform: uppercase;
+}
+div.wrapper div.enemyMenu div.enemyHPContainer {
+  width: 100%;
+  height: 25px;
+  border: 3px solid #c0392b;
+  margin-bottom: 15px;
+}
+div.wrapper div.enemyMenu div.enemyHPContainer div#enemyHP {
+  width: 100%;
+  height: 100%;
+  background-color: #e74c3c;
+  transition: all 0.5s;
+}
+#playerSprite {
+  position: inherit;
+  top: 175px;
+  left: 100px;
+}
+#playerAlert {
+  position: inherit;
+  top: 140px;
+  left: 25px;
+  opacity: 0;
+  transition: all 0.3s;
+  display: block;
+  text-align: center;
+  width: 300px;
+}
+#monsterSprite {
+  position: inherit;
+  top: 150px;
+  right: 100px;
+}
+#monsterAlert {
+  position: inherit;
+  top: 130px;
+  right: 86px;
+  opacity: 0;
+  transition: all 0.3s;
+  display: block;
+  text-align: center;
+  width: 200px;
+}
+#monsterAlert,
+#playerAlert {
+  color: #c0392b;
+  font-size: 22px;
+}
+#healSprite {
+  width: 100px;
+  position: inherit;
+  top: 175px;
+  left: 107px;
+  z-index: 100;
+  opacity: 0;
+}
+#shieldSprite {
+  width: 100px;
+  position: inherit;
+  top: 225px;
+  left: 107px;
+  z-index: 100;
+  opacity: 1;
+  transform: scale(0.5);
+  opacity: 0;
+}
+#blastSprite {
+  width: 50px;
+  position: inherit;
+  top: 225px;
+  left: 127px;
+  z-index: 100;
+  opacity: 0;
+}
+#win,
+#lose {
+  position: inherit;
+  left: 0;
+  right: 0;
+  top: 200px;
+  margin: auto;
+  z-index: 100;
+  width: 50%;
+  text-align: center;
+  background-color: #333;
+  border: solid 2px white;
+  border-radius: 10px;
+  color: white;
+  display: none;
+}
+#overDriveLabel {
+  position: inherit;
+  left: 50px;
+  top: 370px;
+  z-index: 100;
+  text-align: center;
+  font-size: 26px;
+  color: #f1c40f;
+  opacity: 0;
+  transition: all 0.5s;
+  -webkit-animation: overdriveAnimText 3s infinite linear;
+  /* Chrome, Safari, Opera */
+
+  animation: overdriveAnimText 3s infinite linear;
+}
+.pushBack {
+  -webkit-animation: pushBack 0.5s ease-out 1;
+}
+.runForward {
+  -webkit-animation: runForward 1s ease-out 1;
+}
+.healAnim {
+  -webkit-animation: heal 1s ease-in-out 1;
+}
+.blastAnim {
+  -webkit-animation: blast 1s ease-in-out 1;
+}
+.shieldAnim {
+  -webkit-animation: shield 1s ease-in-out 1;
+}
+/* --------------- ANIMATIONS --------------- */
+@-webkit-keyframes overdriveAnim {
+  0% {
+    background-color: #f1c40f;
+  }
+  15% {
+    background-color: #f39c12;
+  }
+  30% {
+    background-color: #e67e22;
+  }
+  45% {
+    background-color: #d35400;
+  }
+  70% {
+    background-color: #e67e22;
+  }
+  85% {
+    background-color: #f39c12;
+  }
+}
+@-webkit-keyframes overdriveAnimText {
+  0% {
+    color: #f1c40f;
+  }
+  15% {
+    color: #f39c12;
+  }
+  30% {
+    color: #e67e22;
+  }
+  45% {
+    color: #d35400;
+  }
+  70% {
+    color: #e67e22;
+  }
+  85% {
+    color: #f39c12;
+  }
+}
+@-webkit-keyframes pushBack {
+  0% {
+    right: 100px;
+  }
+  40% {
+    right: 60px;
+  }
+  100% {
+    right: 100px;
+  }
+}
+@-webkit-keyframes runForward {
+  0% {
+    right: 100px;
+  }
+  40% {
+    right: 700px;
+  }
+  100% {
+    right: 100px;
+  }
+}
+@-webkit-keyframes heal {
+  0% {
+    opacity: 0;
+    top: 175px;
+  }
+  20% {
+    opacity: 0.5;
+    top: 185px;
+  }
+  40% {
+    opacity: 1;
+    top: 195px;
+  }
+  60% {
+    opacity: 0.5;
+    top: 200px;
+  }
+  100% {
+    opacity: 0;
+    top: 175px;
+  }
+}
+@-webkit-keyframes blast {
+  0% {
+    left: 127px;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  50% {
+    left: 900px;
+  }
+  55% {
+    opacity: 0;
+  }
+  100% {
+    left: 127px;
+  }
+}
+@-webkit-keyframes shield {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
