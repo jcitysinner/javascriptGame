@@ -183,10 +183,11 @@ div.wrapper div.enemyMenu div.enemyHPContainer div#enemyHP {
   position: inherit;
   top: 175px;
   left: 100px;
+  width: 200px;
 }
 #playerAlert {
   position: inherit;
-  top: 140px;
+  top: 120px;
   left: 25px;
   opacity: 0;
   transition: all 0.3s;
@@ -198,11 +199,12 @@ div.wrapper div.enemyMenu div.enemyHPContainer div#enemyHP {
   position: inherit;
   top: 150px;
   right: 100px;
+  width: 200px;
 }
 #monsterAlert {
   position: inherit;
-  top: 130px;
-  right: 86px;
+  top: 105px;
+  right: 60px;
   opacity: 0;
   transition: all 0.3s;
   display: block;
